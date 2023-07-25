@@ -3,64 +3,91 @@ import { Button } from './Button';
 import lodash from 'lodash';
 import { useEffect, useState } from 'react';
 
-const buttonStyles = {
+const buttonStyle = {
   background: '#F5F7FB',
 };
 
-const buttonClickStyles = {
+const buttonClickStyle = {
   background: '#D6DBF5',
 }
 
-const buttonCorrectStyles = {
+const buttonCorrectStyle = {
   background: '#94D7A2',
 }
 
-const buttonInCorrectStyles = {
+const buttonInCorrectStyle = {
   background: '#F8BCBC',
 }
 
-export const Quiz = (props) => {
-  const [originBackground, setOriginBackground] = useState({});
-  const [btnBackground, setBtnBackground] = useState({});
-  const [allAnswers, setAllAnswers] = useState([props.quiz.correct_answer, ...props.quiz.incorrect_answers]);
+// eslint-disable-next-line react/prop-types
+export const Quiz = ({ quiz, gameState, score, setScore }) => {
+  const [buttonBackground, setButtonBackground] = useState({});
+  const [currentButtonStyle, setCurrentButtonStyle] = useState({});
+  // eslint-disable-next-line react/prop-types
+  const [allAnswers, setAllAnswers] = useState([quiz.correct_answer, ...quiz.incorrect_answers]);
+  const [prevScore] = useState(score);
 
   const handleClickButton = (answer) => {
-    const changedBtnBackground = {...originBackground};
-    changedBtnBackground[answer] = changedBtnBackground[answer] === buttonStyles ? buttonClickStyles : buttonStyles;
-    setBtnBackground(changedBtnBackground);
+    const newStyle = {...buttonBackground};
+    newStyle[answer] = newStyle[answer] != buttonStyle ? buttonStyle : buttonClickStyle ;
+    setCurrentButtonStyle(newStyle);
   };
 
-  useEffect(() => {
-    const initialBtnBackground = allAnswers.reduce((acc, answer) => {
-      acc[answer] = buttonStyles;
-      return acc;
-    }, {});
-    setBtnBackground(initialBtnBackground);
-    setOriginBackground(initialBtnBackground);
+  const getButtonStyle = (gameState, answer) => {
+    if (gameState === 'Choose Answers')
+      return currentButtonStyle[answer];
+    
+    if (gameState === 'Check Answers') {
+      // eslint-disable-next-line react/prop-types
+      return answer === quiz.correct_answer 
+      ? buttonCorrectStyle 
+      : currentButtonStyle[answer] === buttonClickStyle ? buttonInCorrectStyle : buttonStyle;
+    }
 
-    const shuffleAnswers = lodash.shuffle(allAnswers);
+    return buttonStyle;
+  };
+
+  useEffect(() =>  {
+    // eslint-disable-next-line react/prop-types
+    const newAnswers = [quiz.correct_answer, ...quiz.incorrect_answers];
+    const shuffleAnswers = lodash.shuffle(newAnswers);
     setAllAnswers(shuffleAnswers);
-  }, []);
+  }, [quiz]);
+
+  useEffect(() => {
+    const initialButtonStyle = allAnswers.reduce((style, answer) => {
+      style[answer] = buttonStyle;
+      return style;
+    }, {});
+    setButtonBackground(initialButtonStyle)
+    setCurrentButtonStyle(initialButtonStyle);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allAnswers]);
+
+  useEffect(() => {
+    allAnswers.forEach((answer) => {
+      // eslint-disable-next-line react/prop-types
+      if (answer == quiz.correct_answer && currentButtonStyle[answer] === buttonClickStyle)
+        setScore(() => prevScore + 1);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentButtonStyle]);
   
   return (
         <>
           <div className='question'>
-            <p dangerouslySetInnerHTML={{__html : props.quiz.question}} />
+            <p dangerouslySetInnerHTML={{
+              // eslint-disable-next-line react/prop-types
+              __html : quiz.question
+            }} />
           </div>
           <div className='answers'>
             {allAnswers.map((answer) => (
               <Button
                 key={answer}
                 style={
-                  !props.checkAnswer 
-                  ? btnBackground[answer]
-                  : answer === props.quiz.correct_answer 
-                  ? buttonCorrectStyles
-                  : btnBackground[answer] === buttonClickStyles
-                  ? buttonInCorrectStyles 
-                  : buttonStyles
+                  getButtonStyle(gameState, answer)
                 }
-                className={answer === props.quiz.correct_answer ? 'correct' : 'incorrect'}
                 onClick={() => handleClickButton(answer)}
               >
                 <p dangerouslySetInnerHTML={{__html : answer}} />

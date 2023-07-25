@@ -43,3 +43,12 @@
     border-radius: 15px;
     background: #4D5B9E;
 }
+
+.intro-page {
+    z-index: 1;
+    background-image: url('./assets/menhera.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* background-blend-mode: color-burn; */
+}

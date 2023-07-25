@@ -14,35 +14,24 @@
     margin-bottom: 15px;
 }
 
-.answers {
-    display: flex;
-    gap: 13px;
-}
-
 .answers Button {
     min-height: 20.65px;
     border-radius: 7.942px;
     background: #F5F7FB;
     border: 0.794px solid #4D5B9E;
-    padding: 0px;
+    display: flex;
+    margin-bottom: 5px;
 }
 
+.answers Button:focus, 
 .answers Button:active {
-    background: #D6DBF5;
+    outline: none;
 }
 
-.answers .correct {
-    background: #94D7A2;
-}
-
-.answers button p {
+.answers Button p {
     color: #293264;
     text-align: left;
     font-size: 10.24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin: 4px 8px 8px 4px;
 }
 
 .sep-line {

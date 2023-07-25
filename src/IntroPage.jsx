@@ -9,13 +9,13 @@ export const IntroPage = () => {
     };
 
     return (
-        <div className='intro-page'> 
+        <div className='intro-page'>
             <main>
                 <div className='header-nav'>
                     Quizzical
                 </div>
                 <div className='description'>
-                    Some description if needed
+                    Nova's silly puzzle game
                 </div>
                 <Button onClick={startQuizz}>Start quiz</Button>
             </main>
