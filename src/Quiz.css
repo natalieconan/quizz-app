@@ -1,0 +1,52 @@
+.question {
+    text-align: left;
+    width: 399px;
+    padding-top: 40px;
+    color: #293264;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 11.98px;
+}
+
+.answers {
+    margin-bottom: 15px;
+}
+
+.answers {
+    display: flex;
+    gap: 13px;
+}
+
+.answers Button {
+    min-height: 20.65px;
+    border-radius: 7.942px;
+    background: #F5F7FB;
+    border: 0.794px solid #4D5B9E;
+    padding: 0px;
+}
+
+.answers Button:active {
+    background: #D6DBF5;
+}
+
+.answers .correct {
+    background: #94D7A2;
+}
+
+.answers button p {
+    color: #293264;
+    text-align: left;
+    font-size: 10.24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 4px 8px 8px 4px;
+}
+
+.sep-line {
+    width: 399px;
+    height: 0.794px;
+    background: #DBDEF0;
+}

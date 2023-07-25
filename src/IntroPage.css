@@ -1,0 +1,45 @@
+#root {
+    margin: 0 auto;
+    padding: 0 auto;
+    text-align: center;
+    font-style: normal;
+}
+
+.intro-page {
+    background: #F5F7FB;
+    width: 550px;
+    min-height: 550px;
+    position: relative;
+}
+
+.intro-page > main {
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    margin-top: -25px;
+    left: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.intro-page > main > .header-nav {
+    color: #293264;
+    font-size: 31.25px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.intro-page > main > .description {
+    color: #293264;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 29px;
+}
+  
+.intro-page > main > Button {
+    min-width: 193px;
+    min-height: 52px;
+    border-radius: 15px;
+    background: #4D5B9E;
+}

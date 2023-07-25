@@ -1,0 +1,44 @@
+#root {
+    padding: 0 auto;
+    margin: 0 auto;
+}
+
+p {
+    margin: 0;
+}
+
+.question-page {
+    background: #F5F7FB;
+    width: 550px;
+    min-height: 550px;
+    color: #293264;
+}
+
+.question-page > .check-answer-btn {
+    left: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto; 
+    display: flex;
+    justify-content: center;
+    padding-bottom: 25px;
+}
+
+.question-page > .check-answer-btn Button {
+    bottom: 25px;
+    width: 120px;
+    min-height: 35px;
+    background: #4D5B9E;
+    color: #F5F7FB;
+    text-align: center;
+    font-size: 10.24px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.question-page > .question-block {
+    text-align: left;
+    width: 399px;
+    margin-left: 75px;
+    margin-bottom: 20px;
+}
