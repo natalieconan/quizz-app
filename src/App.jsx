@@ -1,7 +1,7 @@
 import './App.css';
 import { IntroPage } from './IntroPage';
 import { QuestionPage } from './QuestionPage';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
