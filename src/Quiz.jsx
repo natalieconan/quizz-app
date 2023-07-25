@@ -25,7 +25,7 @@ export const Quiz = ({ quiz, gameState, score, setScore }) => {
   const [currentButtonStyle, setCurrentButtonStyle] = useState({});
   // eslint-disable-next-line react/prop-types
   const [allAnswers, setAllAnswers] = useState([quiz.correct_answer, ...quiz.incorrect_answers]);
-  const [prevScore] = useState(score);
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleClickButton = (answer) => {
     const newStyle = {...buttonBackground};
@@ -67,8 +67,17 @@ export const Quiz = ({ quiz, gameState, score, setScore }) => {
   useEffect(() => {
     allAnswers.forEach((answer) => {
       // eslint-disable-next-line react/prop-types
-      if (answer == quiz.correct_answer && currentButtonStyle[answer] === buttonClickStyle)
-        setScore(() => prevScore + 1);
+      if (answer == quiz.correct_answer && currentButtonStyle[answer] === buttonClickStyle) {
+        if (!isAdded) {
+          setScore(score + 1);
+          setIsAdded(true);
+        }
+      } else {
+        if (isAdded) {
+          setScore(score - 1);
+          setIsAdded(false);
+        }
+      }
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentButtonStyle]);

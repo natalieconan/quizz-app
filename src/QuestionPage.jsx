@@ -28,6 +28,7 @@ export const QuestionPage = () => {
             case 'Check Answers':
                 fetchQuizzes();
                 setGameState('Choose Answers');
+                setScore(() => 0);
                 window.scrollTo({
                     top: 0,
                     left: 0,
